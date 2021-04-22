@@ -136,10 +136,7 @@ body, html{
 }
 .character-table{
     position: relative;
-    display: flex;
     height: 100%;
-    align-items: baseline;
-    justify-content: center;
     width: 100%;
 }
 .character-window .show {
