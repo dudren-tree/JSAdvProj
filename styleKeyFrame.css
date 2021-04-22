@@ -1,0 +1,65 @@
+@keyframes arrow-1-right {
+    0% {
+        right:0;
+    }
+    50% {
+        right:10px;
+    }
+    100% {
+        right:0;
+    }
+}
+@keyframes arrow-1-left {
+    0% {
+        left:0;
+    }
+    50% {
+        left:10px;
+    }
+    100% {
+        left:0;
+    }
+}
+@keyframes character-name {
+    0%{
+        transform: translateY(0%);
+        display: none;
+    }
+    50%{
+        transform: translateY(-15%);
+        display: none;
+    }
+    100%{  
+        transform: translateY(0%);
+        display: none;
+    }
+}
+@keyframes priv-page {
+    0%{
+        transform: translateX(0%);
+        display: none;
+    }
+    50%{
+        transform: translateX(-150%);
+        display: none;
+    }
+    100%{  
+        display: grid;
+        transform: translateX(0%);
+    }
+}
+
+@keyframes next-page {
+    0%{
+        transform: translateX(0%);
+        display: none;
+    }
+    50%{
+        transform: translateX(-150%);
+        display: none;
+    }
+    100%{  
+        display: grid;
+        transform: translateX(0%);
+    }
+}

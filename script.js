@@ -16,14 +16,17 @@ function init () {
     sendRequest('GET', requestUrl)
         .then(data => fillNameBtn(data.results))
         .catch(err => console.log(err))
-    let charWind = document.querySelector('.character-window');
-    let tableInfo = document.querySelectorAll('#main-table>tr');
-    let nameBtn = document.querySelectorAll('.character-name');
-    let showHeroMenu = document.querySelector('#show-character');
-    let closeBtnAtMenu = document.querySelector('.close-btn');
-    let photoOfHero = document.querySelector('.photo>img');
-    let nextButt = document.querySelector('.arrow-1-right');
-    let privButt = document.querySelector('.arrow-1-left');
+    
+    let bottomMenu = document.querySelector('.bottom-menu'),
+        charWind = document.querySelector('.character-window'),
+        tableInfo = document.querySelectorAll('#main-table>tr'),
+        nameBtn = document.querySelectorAll('.character-name'),
+        showHeroMenu = document.querySelector('#show-character'),
+        closeBtnAtMenu = document.querySelector('.close-btn'),
+        photoOfHero = document.querySelector('.photo>img'),
+        arrows = document.querySelector('.arrow-1')
+        privButt = arrows.children[0],
+        nextButt =  arrows.children[1];
 
     privButt.style.display = 'none'
     closeBtnAtMenu.addEventListener('click', hideHeroMenu);
@@ -32,6 +35,10 @@ function init () {
 
     function showPrivButt() {
         if(nameBtn[4].innerHTML === 'Obi-Wan Kenobi') {
+            bottomMenu.classList.toggle('priv-page');
+            if(bottomMenu.classList.contains('next-page')) {
+                bottomMenu.classList.toggle('next-page');
+            }
             sendRequest('GET', requestUrl)
                 .then(data => fillNameBtn(data.results))
                 .catch(err => console.log(err))
@@ -42,6 +49,10 @@ function init () {
 
     function nextCharacterPage() {
         if(nameBtn[4].innerHTML === 'Leia Organa') {
+            bottomMenu.classList.toggle('next-page');
+            if(bottomMenu.classList.contains('priv-page')) {
+                bottomMenu.classList.toggle('priv-page');
+            }
             for(let i = 4; i < nameBtn.length; i += 1) {
                 sendRequest('GET', requestUrl)
                 .then(data => fillNameBtn(data.results))
@@ -117,9 +128,9 @@ function init () {
                     .catch(error => console.log(error))
 
             }
-            
-            
+
         } else {
+
             for (let i = 0; i < tableInfo.length; i += 1) {
                 let value = Object.values(arr[i]);
                     
@@ -170,27 +181,4 @@ function init () {
         photoOfHero.src = ' ';
     }
 
-    function sendRequest (method ,url) {
-        return new Promise ((resolve, reject) => {
-            const xhr = new XMLHttpRequest();
-    
-            xhr.open(method, url);
-    
-            xhr.responseType = 'json'
-    
-            xhr.onload = () => {
-                if(xhr.status >= 400) {
-                    reject(xhr.response)
-                } else {
-                    resolve(xhr.response)
-                }      
-            }
-    
-            xhr.onerror = () => {
-                reject(xhr.response)
-                }
-    
-            xhr.send()
-        })
-    }
 }
